@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://cardif.cl/Schema/ESO/Error/v1.0" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://cardif.cl/Schema/ESO/Error/v1.0">
+  <annotation>
+    <documentation>Data structures related to Error information handling.</documentation>
+  </annotation>
+  <complexType name="Error_Type">
+    <annotation>
+      <documentation>Information about a certain error found during the excecution. It can be used to represent canonical and non-canonical Errors.</documentation>
+    </annotation>
+    <sequence>
+      <element name="Code" type="string">
+        <annotation>
+          <documentation>Unique error Code.</documentation>
+        </annotation>
+      </element>
+      <element name="Description" type="string" maxOccurs="1" minOccurs="0">
+        <annotation>
+          <documentation>Error Description. There may be no description if the error is represented in a non-canonical form, but this element should be populated if its on the canonical form.</documentation>
+        </annotation>
+      </element>
+      <element name="Type">
+        <annotation>
+          <documentation>Error Type. This element can change during the error interpretation process, within the service execution.</documentation>
+        </annotation>
+        <simpleType>
+          <restriction base="string">
+            <enumeration value="VAL">
+              <annotation>
+                <documentation>Schema Validation-Related Error. Expected error.</documentation>
+              </annotation>
+            </enumeration>
+            <enumeration value="BSS">
+              <annotation>
+                <documentation>Business-Related Error. Expected error.</documentation>
+              </annotation>
+            </enumeration>
+            <enumeration value="TEC">
+              <annotation>
+                <documentation>Technical-Related Error. Presumed error.</documentation>
+              </annotation>
+            </enumeration>
+            <enumeration value="UNK">
+              <annotation>
+                <documentation>Unknown Error Type. Unexpected error.</documentation>
+              </annotation>
+            </enumeration>
+            <enumeration value="SEG">
+              <annotation>
+                <documentation>Unknown Error Type. Unexpected error.</documentation>
+              </annotation>
+            </enumeration>
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="Origin" type="string" maxOccurs="1" minOccurs="0">
+        <annotation>
+          <documentation>Where did the error came from. This can be a Component, another service, a DB, a certain Service Provider, etc. The idea is once this is populated, it stays the same up to the Original service response. If the Origin is uncertain, this element can be ignored.</documentation>
+        </annotation>
+      </element>
+      <element name="Details" type="anyType" maxOccurs="1" minOccurs="0">
+        <annotation>
+          <documentation>Any details specific to this error, that must be shown to the Service Consumers, and/or used for traceability measures.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <element name="Error" type="tns:Error_Type">
+    <annotation>
+      <documentation>Information about a certain error found during the excecution. It can be used to represent canonical and non-canonical Errors.</documentation>
+    </annotation>
+  </element>
+</schema>

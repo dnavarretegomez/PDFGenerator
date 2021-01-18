@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://cardif.cl/Schema/ESO/Dictionary/v1.0" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://cardif.cl/Schema/ESO/Dictionary/v1.0">
+  <annotation>
+    <documentation>Simple and Basic data Structures, intented to be used
+			across all the Inventory.</documentation>
+  </annotation>
+  <complexType name="TransportHeaders_Type">
+    <annotation>
+      <documentation>Different structures related to transport
+				meta-information of several handled transports and
+				messaging protocols.</documentation>
+    </annotation>
+    <sequence>
+      <element ref="tns:HTTPHeader" maxOccurs="1" minOccurs="0"/>
+      <element ref="tns:SOAPHeader" maxOccurs="1" minOccurs="0"/>
+      <element ref="tns:JMSHeader" maxOccurs="1" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="HTTPHeader_Type">
+    <annotation>
+      <documentation>HTTP Headers related to
+				a particular Service
+				Execution.</documentation>
+    </annotation>
+  </complexType>
+  <complexType name="SOAPHeader_Type">
+    <annotation>
+      <documentation>SOAPHeaders related to a
+				particular Service
+				Execution.</documentation>
+    </annotation>
+  </complexType>
+  <complexType name="JMSHeader_Type">
+    <annotation>
+      <documentation>JMSHeaders related to a
+				particular Service
+				Execution.</documentation>
+    </annotation>
+  </complexType>
+  <element name="HTTPHeader" type="tns:HTTPHeader_Type">
+    <annotation>
+      <documentation>HTTP Headers related to
+				a particular Service
+				Execution.</documentation>
+    </annotation>
+  </element>
+  <element name="SOAPHeader" type="tns:SOAPHeader_Type">
+    <annotation>
+      <documentation>SOAPHeaders related to a
+				particular Service
+				Execution.</documentation>
+    </annotation>
+  </element>
+  <element name="JMSHeader" type="tns:JMSHeader_Type">
+    <annotation>
+      <documentation>JMSHeaders related to a
+				particular Service
+				Execution.</documentation>
+    </annotation>
+  </element>
+  <element name="TransportHeaders" type="tns:TransportHeaders_Type">
+    <annotation>
+      <documentation>Different structures related to transport meta-information of several handled transports and messaging protocols.</documentation>
+    </annotation>
+  </element>
+  <complexType name="ExecutionProfile_Type">
+    <annotation>
+      <documentation>Local identity profile regarding a particular execution. Used to profile a certain execution, used mainly for audit and trace operations.</documentation>
+    </annotation>
+    <attribute name="Type">
+      <simpleType>
+        <restriction base="string">
+          <enumeration value="Inbound"/>
+          <enumeration value="Outbound"/>
+        </restriction>
+      </simpleType>
+    </attribute>
+    <attribute name="Initiator">
+      <simpleType>
+        <restriction base="string">
+          <enumeration value="Component">
+            <annotation>
+              <documentation>Service Inventory Component</documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="Service">
+            <annotation>
+              <documentation>Service Inventory Service</documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ExtConsumer">
+            <annotation>
+              <documentation>External (Not from the Enterprise) Consumer</documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="IntConsumer">
+            <annotation>
+              <documentation>Internal (From the Enterprise) Consumer</documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+    </attribute>
+    <attribute name="Controller">
+      <simpleType>
+        <restriction base="string">
+          <enumeration value="Component">
+            <annotation>
+              <documentation>Service Inventory Component</documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="Service">
+            <annotation>
+              <documentation>Service Inventory Service</documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ExtProvider">
+            <annotation>
+              <documentation>External (Not from the Enterprise) Provider</documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="IntProvider">
+            <annotation>
+              <documentation>External (Not from the Enterprise) Provider</documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+    </attribute>
+  </complexType>
+  <element name="ExecutionProfile" type="tns:ExecutionProfile_Type"/>
+</schema>

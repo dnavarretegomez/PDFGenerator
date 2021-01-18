@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://cardif.cl/Schema/EBM/PDFGenerator/generateFromPDF/v1.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://cardif.cl/Schema/EBM/PDFGenerator/generateFromPDF/v1.0" xmlns:pref="http://cardif.cl/Schema/ESO/MessageHeader/v1.0" xmlns:pref1="http://cardif.cl/Schema/ESO/Dictionary/v1.0" xmlns:pref2="http://cardif.cl/Schema/EBO/Error/v1.0" xmlns:pref3="http://cardif.cl/Schema/EBO/CompanyID/v1.0">
+  <import namespace="http://cardif.cl/Schema/ESO/MessageHeader/v1.0" schemaLocation="MessageHeader_v1.0_ESO.xsd"/>
+  <import namespace="http://cardif.cl/Schema/ESO/Dictionary/v1.0" schemaLocation="Dictionary_v1.0_ESO.xsd"/>
+  <import namespace="http://cardif.cl/Schema/EBO/Error/v1.0" schemaLocation="Error_v1.0_EBO.xsd"/>
+  <import namespace="http://cardif.cl/Schema/EBO/CompanyID/v1.0" schemaLocation="CompanyID_v1.0_EBO.xsd"/>
+  <element name="generateFromPDF_PDFGenerator_REQ" type="tns:GenerateFromPDF_PDFGenerator_REQ_Type">
+    <annotation>
+      <documentation>Elementos y tipos complejos que definen el requerimiento de la operacion</documentation>
+    </annotation>
+  </element>
+  <complexType name="GenerateFromPDF_PDFGenerator_REQ_Type">
+    <sequence>
+      <element ref="pref:RequestHeader"/>
+      <element name="Body">
+        <complexType>
+          <sequence>
+            <element ref="pref3:CompanyID"/>
+            <element ref="tns:GenerateFromPDFPDFGenerator"/>
+          </sequence>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <element name="GenerateFromPDFPDFGenerator" type="tns:GenerateFromPDFPDFGenerator_Type"/>
+  <complexType name="GenerateFromPDFPDFGenerator_Type">
+    <sequence>
+      <element name="template" type="string"/>
+      <element name="numberOfDocuments" type="int"/>
+      <element ref="tns:DataSetList"/>
+    </sequence>
+  </complexType>
+  <element name="DataSetList" type="tns:DataSetList_Type"/>
+  <complexType name="DataSetList_Type">
+    <sequence>
+      <element name="DataSet" type="tns:DataSet_Type" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+  <complexType name="DataSet_Type">
+    <sequence>
+      <element name="documentIndex" type="int"/>
+      <element ref="tns:TextParameterList" minOccurs="0"/>
+      <element ref="tns:VectorParameterList" minOccurs="0"/>
+      <element ref="tns:ImageParameterList" minOccurs="0"/>
+      <element ref="tns:SectionParameterList" minOccurs="0"/>
+      <element maxOccurs="1" minOccurs="0" name="password" type="string"/>
+    </sequence>
+  </complexType>
+  <element name="TextParameterList" type="tns:TextParameterList_Type"/>
+  <complexType name="TextParameterList_Type">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="TextParameter" nillable="true" type="tns:TextParameter_Type"/>
+    </sequence>
+  </complexType>
+  <complexType name="TextParameter_Type">
+    <sequence>
+      <element name="textParameterKey" type="string"/>
+      <element name="textParameterValue" type="string"/>
+    </sequence>
+  </complexType>
+  <element name="VectorParameterList" type="tns:VectorParameterList_Type"/>
+  <complexType name="VectorParameterList_Type">
+    <sequence>
+      <element ref="tns:VectorParameterValue" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+  <element name="VectorParameterValue" type="tns:VectorParameterValue_Type"/>
+  <complexType name="VectorParameterValue_Type">
+    <sequence>
+      <element name="vectorParameterKey" type="string"/>
+      <element minOccurs="0" maxOccurs="unbounded" name="VectorParameter" nillable="true" type="tns:VectorParameter_Type"/>
+    </sequence>
+  </complexType>
+  <complexType name="VectorParameter_Type">
+    <sequence>
+      <element name="vectorParameterIndex" type="int"/>
+      <element minOccurs="0" name="vectorParameterValue" type="string"/>
+    </sequence>
+  </complexType>
+  <element name="ImageParameterList" type="tns:ImageParameterList_Type"/>
+  <complexType name="ImageParameterList_Type">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="ImageParameter" nillable="true" type="tns:ImageParameter_Type"/>
+    </sequence>
+  </complexType>
+  <complexType name="ImageParameter_Type">
+    <sequence>
+      <element name="imageParameterKey" type="string"/>
+      <element name="imageParameterBase64" type="string"/>
+    </sequence>
+  </complexType>
+  <element name="SectionParameterList" type="tns:SectionParameterList_Type"/>
+  <complexType name="SectionParameterList_Type">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="SectionParameter" nillable="true" type="tns:SectionParameter_Type"/>
+    </sequence>
+  </complexType>
+  <complexType name="SectionParameter_Type">
+    <sequence>
+      <element name="sectionParameterKey" type="string"/>
+      <element name="sectionParameterCondition" type="string"/>
+    </sequence>
+  </complexType>
+  <element name="generateFromPDF_PDFGenerator_RSP" type="tns:GenerateFromPDF_PDFGenerator_RSP_Type">
+    <annotation>
+      <documentation>Elemento que define la respuesta a la operacion</documentation>
+    </annotation>
+  </element>
+  <complexType name="GenerateFromPDF_PDFGenerator_RSP_Type">
+    <sequence>
+      <element ref="pref:ResponseHeader"/>
+      <element name="Body">
+        <complexType>
+          <sequence>
+            <element ref="tns:GenerateFromPDFResponse"/>
+          </sequence>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <element name="GenerateFromPDFResponse" type="tns:GenerateFromPDFResponse"/>
+  <complexType name="GenerateFromPDFResponse">
+    <sequence>
+      <element ref="tns:GenerateResponse" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+  <element name="GenerateResponse" type="tns:GenerateResponse_Type"/>
+  <complexType name="GenerateResponse_Type">
+    <sequence>
+      <element name="documentIndex" type="int"/>
+      <element name="generatedPDFBase64" type="string"/>
+    </sequence>
+  </complexType>
+  <element name="generateFromPDF_PDFGenerator_FRSP" type="tns:GenerateFromPDF_PDFGenerator_FRSP_Type">
+    <annotation>
+      <documentation>Elementos y tipos complejos que definen la respuesta en caso de error, utilizando los tipos de error definidos</documentation>
+    </annotation>
+  </element>
+  <complexType name="GenerateFromPDF_PDFGenerator_FRSP_Type">
+    <sequence>
+      <element ref="pref:ResponseHeader"/>
+      <element name="Body">
+        <complexType>
+          <sequence>
+            <element ref="pref2:Error"/>
+          </sequence>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+</schema>

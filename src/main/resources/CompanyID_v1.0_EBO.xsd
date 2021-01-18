@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://cardif.cl/Schema/EBO/CompanyID/v1.0" elementFormDefault="qualified" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://cardif.cl/Schema/EBO/CompanyID/v1.0">
+  <element name="CompanyID" type="tns:CompanyID_Type"/>
+  <complexType name="CompanyID_Type">
+    <sequence>
+      <element name="companyID" type="string"/>
+    </sequence>
+  </complexType>
+</schema>

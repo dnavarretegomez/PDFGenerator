@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://cardif.cl/Schema/EBO/Error/v1.0" elementFormDefault="qualified" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://cardif.cl/Schema/EBO/Error/v1.0">
+  <element name="Error" type="tns:Error_Type"/>
+  <complexType name="Error_Type">
+    <sequence>
+      <element name="errorCode" type="string" minOccurs="0"/>
+      <element name="errorDescription" type="string" minOccurs="0"/>
+    </sequence>
+  </complexType>
+</schema>
